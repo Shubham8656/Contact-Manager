@@ -6,6 +6,8 @@ import { editContact } from "../../redux/Action/action";
 
 function EditContact(props) {
     const [contact, setContact] = useState({ id: 0, name: '', email: '' });
+    const [nameError, setNameError] = useState({ isError: false, erroMsg: '' })
+    const [emailError, setEmailError] = useState({ isError: false, erroMsg: '' })
     const contacts = useSelector(state => state);
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -23,9 +25,29 @@ function EditContact(props) {
     let onChangeEmail = (e) => {
         setContact({ ...contact, email: e.target.value })
     }
+    const validateContact = () => {
+        var isvalidate = true;
+        if (contact.name == '') {
+            setNameError({ isError: true, erroMsg: 'Name is Required!' })
+            isvalidate = false;
+        }
+        else {
+            setNameError({ isError: false, erroMsg: '' })
+        }
+        if (contact.email == '') {
+            setEmailError({ isError: true, erroMsg: 'Email is Required!' })
+            isvalidate = false
+        }
+        else {
+            setEmailError({ isError: false, erroMsg: '' })
+        }
+        return isvalidate;
+    }
     let editcontact = (e) => {
         e.preventDefault();
-        console.log('in edit', contact)
+        let isValidate = validateContact();
+        if (!isValidate)
+            return
         dispatch(editContact(contact))
         setContact({ id: 0, name: '', email: '' })
         navigate("/");
@@ -37,10 +59,12 @@ function EditContact(props) {
                 <div className="field">
                     <label>Name</label>
                     <input type='text' placeholder='Enter your name' value={contact.name} onChange={onChangeName} />
+                    <div style={{color:'red'}}>{nameError.isError? nameError.erroMsg : ''}</div>
                 </div>
                 <div className="field">
                     <label>Email</label>
                     <input type='text' placeholder='Enter your email' value={contact.email} onChange={onChangeEmail} />
+                    <div style={{color:'red'}}>{emailError.isError? nameError.erroMsg : ''}</div>
                 </div>
                 <button className="ui blue button" onClick={editcontact}>Save</button>
             </form>
