@@ -27,6 +27,7 @@ function EditContact(props) {
         setContact({ ...contact, email: e.target.value })
     }
     const validateContact = () => {
+        debugger
         var isvalidate = true;
         if (contact.name === '') {
             setNameError({ isError: true, erroMsg: 'Name is Required!' })
@@ -65,7 +66,7 @@ function EditContact(props) {
                 <div className="field">
                     <label>Email</label>
                     <input type='text' placeholder='Enter your email' value={contact.email} onChange={onChangeEmail} />
-                    <div style={{color:'red'}}>{emailError.isError? nameError.erroMsg : ''}</div>
+                    <div style={{color:'red'}}>{emailError.isError? emailError.erroMsg : ''}</div>
                 </div>
                 <button className="ui blue button" onClick={editcontact}>Save</button>
             </form>

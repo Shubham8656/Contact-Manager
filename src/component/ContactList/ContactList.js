@@ -40,7 +40,7 @@ function ContactList(props) {
             </div>
             <div className="ui celled list">
                 {
-                        contacts.length ? ContactList : <div>No Contacts</div>
+                        contacts.length ? ContactList : <div>No Contacts available</div>
                 }
             </div>
         </div>

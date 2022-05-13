@@ -62,7 +62,7 @@ function AddContact(props) {
                 <div className="field">
                     <label>Email</label>
                     <input type='text' placeholder='Enter your email' value={contact.email} onChange={onChangeEmail} />
-                    <div style={{color:'red'}}>{emailError.isError? nameError.erroMsg : ''}</div>
+                    <div style={{color:'red'}}>{emailError.isError? emailError.erroMsg : ''}</div>
                 </div>
                 <button className="ui blue button" onClick={addcontact}>Submit</button>
             </form>
