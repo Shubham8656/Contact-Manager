@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link,useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { addToContact } from "../../redux/Action/action";
 
 function AddContact(props) {
@@ -34,6 +34,7 @@ function AddContact(props) {
                 <div className="field">
                     <label>Name</label>
                     <input type='text' placeholder='Enter your name' value={contact.name} onChange={onChangeName}/>
+                    <div>error</div>
                 </div>
                 <div className="field">
                     <label>Email</label>
