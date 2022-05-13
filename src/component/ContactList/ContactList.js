@@ -6,7 +6,6 @@ import { useState } from 'react';
 function ContactList(props) {
     const contacts = useSelector(state => state);
     const [key, setKey] = useState('')
-    const [searchContact, setSearchContact] = useState(contacts)
     let ContactList = contacts.map(contact => {
         if(key.length>0){
             if(contact.name.toLowerCase().includes(key.toLowerCase())){

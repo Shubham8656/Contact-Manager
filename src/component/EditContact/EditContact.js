@@ -1,6 +1,6 @@
 import { useEffect, useState} from "react";
 import { useDispatch,useSelector } from "react-redux";
-import { Link, useParams, useNavigate} from "react-router-dom";
+import { useParams, useNavigate} from "react-router-dom";
 // import { useHistory} from "react-router";
 import { editContact } from "../../redux/Action/action";
 
@@ -15,7 +15,7 @@ function EditContact(props) {
     
     useEffect(() => {
         console.log(id)
-        var editcontact = contacts.find(contact => contact.id == id.id)
+        var editcontact = contacts.find(contact => contact.id === id.id)
         console.log('edit', editcontact)
         setContact(editcontact)
     }, [])
@@ -27,14 +27,14 @@ function EditContact(props) {
     }
     const validateContact = () => {
         var isvalidate = true;
-        if (contact.name == '') {
+        if (contact.name === '') {
             setNameError({ isError: true, erroMsg: 'Name is Required!' })
             isvalidate = false;
         }
         else {
             setNameError({ isError: false, erroMsg: '' })
         }
-        if (contact.email == '') {
+        if (contact.email === '') {
             setEmailError({ isError: true, erroMsg: 'Email is Required!' })
             isvalidate = false
         }

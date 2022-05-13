@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import './App.css';
 import AddContact from './component/AddContact/AddContact';
 import ContactList from './component/ContactList/ContactList';
@@ -14,14 +13,6 @@ const data = [
   }
 ]
 function App() {
-  const [contacts, setContacts] = useState(data);
-
-  let addContact = (contact) => {
-    setContacts([...contacts, contact])
-  }
-  let deleteContact = (id) => {
-    setContacts(contacts.filter(contact => contact.id !== id));
-  }
   return (
     <>
       <Header />

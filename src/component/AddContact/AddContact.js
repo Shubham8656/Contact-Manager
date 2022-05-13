@@ -19,14 +19,14 @@ function AddContact(props) {
     }
     const validateContact = () => {
         var isvalidate = true;
-        if (contact.name == '') {
+        if (contact.name === '') {
             setNameError({ isError: true, erroMsg: 'Name is Required!' })
             isvalidate = false;
         }
         else {
             setNameError({ isError: false, erroMsg: '' })
         }
-        if (contact.email == '') {
+        if (contact.email === '') {
             setEmailError({ isError: true, erroMsg: 'Email is Required!' })
             isvalidate = false
         }
