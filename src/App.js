@@ -1,24 +1,36 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import AddContact from './component/AddContact/AddContact';
+import ContactList from './component/ContactList/ContactList';
+import Header from './component/Header/Header';
+import { Route, Routes } from 'react-router-dom';
+import EditContact from './component/EditContact/EditContact';
 
+const data = [
+  {
+    "id": new Date(),
+    "name": "shubham",
+    "email": "shubham@gmail.com"
+  }
+]
 function App() {
+  const [contacts, setContacts] = useState(data);
+
+  let addContact = (contact) => {
+    setContacts([...contacts, contact])
+  }
+  let deleteContact = (id) => {
+    setContacts(contacts.filter(contact => contact.id !== id));
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header />
+      <Routes>
+        <Route path='/' element={<ContactList/>} exact />
+        <Route path='/newcontact' element={<AddContact/>} />
+        <Route path='/:id' element={<EditContact/>} />
+      </Routes>
+    </>
   );
 }
 
