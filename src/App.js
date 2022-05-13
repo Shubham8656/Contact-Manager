@@ -5,13 +5,6 @@ import Header from './component/Header/Header';
 import { Route, Routes } from 'react-router-dom';
 import EditContact from './component/EditContact/EditContact';
 
-const data = [
-  {
-    "id": new Date(),
-    "name": "shubham",
-    "email": "shubham@gmail.com"
-  }
-]
 function App() {
   return (
     <>

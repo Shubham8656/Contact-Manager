@@ -18,7 +18,7 @@ function EditContact(props) {
         var editcontact = contacts.find(contact => contact.id === id.id)
         console.log('edit', editcontact)
         setContact(editcontact)
-    }, [])
+    },[id,contacts])
     let onChangeName = (e) => {
         setContact({ ...contact, name: e.target.value })
     }
