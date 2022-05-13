@@ -14,11 +14,12 @@ function EditContact(props) {
     const id = useParams(); 
     
     useEffect(() => {
-        console.log(id)
-        var editcontact = contacts.find(contact => contact.id === id.id)
-        console.log('edit', editcontact)
+        console.log(+id.id)
+        var editcontact = contacts.find(contact => contact.id === +id.id)
+        console.log('edit', contacts)
         setContact(editcontact)
-    },[id,contacts])
+    },[id,contacts]);
+
     let onChangeName = (e) => {
         setContact({ ...contact, name: e.target.value })
     }
