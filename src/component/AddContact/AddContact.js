@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { addToContact } from "../../redux/Action/action";
-
+import request from '../../api/contacts';
 function AddContact(props) {
     const [contact, setContact] = useState({ id: 0, name: '', email: '' });
     const [nameError, setNameError] = useState({ isError: false, erroMsg: '' })
@@ -42,11 +41,11 @@ function AddContact(props) {
             return
         const newContact = {
             ...contact,
-            id: contacts.length,
+            id: new Date(),
 
         }
-        console.log(newContact)
-        dispatch(addToContact(newContact))
+        request.post('/contacts.json',JSON.stringify(newContact))
+        // dispatch(addToContact(newContact))
         setContact({ id: 0, name: '', email: '' })
         navigate('/')
     }

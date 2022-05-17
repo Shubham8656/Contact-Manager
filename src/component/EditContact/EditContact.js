@@ -1,24 +1,22 @@
-import { useEffect, useState} from "react";
-import { useDispatch,useSelector } from "react-redux";
-import { useParams, useNavigate} from "react-router-dom";
-// import { useHistory} from "react-router";
-import { editContact } from "../../redux/Action/action";
-
+import { useEffect, useState } from "react";
+import {  useSelector } from "react-redux";
+import { useParams, useNavigate } from "react-router-dom";
+import api from '../../api/contacts';
 function EditContact(props) {
     const [contact, setContact] = useState({ id: 0, name: '', email: '' });
     const [nameError, setNameError] = useState({ isError: false, erroMsg: '' })
     const [emailError, setEmailError] = useState({ isError: false, erroMsg: '' })
     const contacts = useSelector(state => state);
-    const dispatch = useDispatch();
     const navigate = useNavigate();
-    const id = useParams(); 
-    
+    const id = useParams();
+
     useEffect(() => {
-        console.log(+id.id)
-        var editcontact = contacts.find(contact => contact.id === +id.id)
-        console.log('edit', contacts)
-        setContact(editcontact)
-    },[id,contacts]);
+        const getContact = async () => {
+            const resp = await api.get(`/contacts/${id.id}.json`)
+            setContact(resp.data)
+        }
+        getContact()
+    }, [id, contacts]);
 
     let onChangeName = (e) => {
         setContact({ ...contact, name: e.target.value })
@@ -50,9 +48,13 @@ function EditContact(props) {
         let isValidate = validateContact();
         if (!isValidate)
             return
-        dispatch(editContact(contact))
+        // dispatch(editContact(contact))
+        api.put(`https://contact-manager-648dc-default-rtdb.firebaseio.com/contacts/${id.id}.json`, contact).then(res => {
+            if (res.status === 200)
+                navigate("/");
+        }).catch(err => console.log('err', err))
         setContact({ id: 0, name: '', email: '' })
-        navigate("/");
+        // navigate("/");
     }
     return (
         <div className="ui container">
@@ -61,12 +63,12 @@ function EditContact(props) {
                 <div className="field">
                     <label>Name</label>
                     <input type='text' placeholder='Enter your name' value={contact.name} onChange={onChangeName} />
-                    <div style={{color:'red'}}>{nameError.isError? nameError.erroMsg : ''}</div>
+                    <div style={{ color: 'red' }}>{nameError.isError ? nameError.erroMsg : ''}</div>
                 </div>
                 <div className="field">
                     <label>Email</label>
                     <input type='text' placeholder='Enter your email' value={contact.email} onChange={onChangeEmail} />
-                    <div style={{color:'red'}}>{emailError.isError? emailError.erroMsg : ''}</div>
+                    <div style={{ color: 'red' }}>{emailError.isError ? emailError.erroMsg : ''}</div>
                 </div>
                 <button className="ui blue button" onClick={editcontact}>Save</button>
             </form>
