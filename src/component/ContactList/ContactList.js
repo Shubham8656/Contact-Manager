@@ -50,7 +50,7 @@ function ContactList(props) {
                         <i className='user plus icon'></i>Add Contact</button></Link>
                 </div>
                 <div className="ui left floated header">
-                    <h2>Contact List</h2>
+                    <h3>Contact List</h3>
                 </div>
             </div>
             <div className='ui icon input'>

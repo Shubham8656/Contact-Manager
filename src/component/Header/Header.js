@@ -10,7 +10,7 @@ function Header(props) {
     return (
         <div className="ui clearing segment"  >
             <div className="ui left floated header">
-                <h1 className="ui"style={{color:'green'}}> Contact Manager</h1>
+                <h1 className="ui"style={{color:'green',fontSize:'22px'}}> Contact Manager</h1>
             </div>
             <div className="ui right floated header">
                 {props.user ? <button className='ui button negative' onClick={logout}>
