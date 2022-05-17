@@ -22,7 +22,7 @@ function App() {
         navigate('/SignIn')
     })
     authchange();
-  }, [])
+  }, [user])
 
   
   return (

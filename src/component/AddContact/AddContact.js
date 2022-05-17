@@ -1,13 +1,10 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import request from '../../api/contacts';
 function AddContact(props) {
     const [contact, setContact] = useState({ id: 0, name: '', email: '' });
     const [nameError, setNameError] = useState({ isError: false, erroMsg: '' })
     const [emailError, setEmailError] = useState({ isError: false, erroMsg: '' })
-    const contacts = useSelector(state => state);
-    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     let onChangeName = (e) => {
